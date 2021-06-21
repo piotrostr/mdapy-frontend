@@ -1,9 +1,16 @@
 import * as React from "react"
-import Header from '../components/Header'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import '@fontsource/inter'
 import '@fontsource/work-sans'
 import '@fontsource/ibm-plex-sans'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+
+import Header from '../components/Header'
+import InputPanel from '../components/InputPanel'
+import DataSummaryPanel from '../components/DataSummaryPanel'
+import SamplesPanel from '../components/SamplesPanel'
+import AgeDimensionsPanel from '../components/AgeDimensionsPanel'
+import GraphCard from '../components/GraphCard'
+import GraphCardPlaceholder from '../components/GraphCardPlaceholder'
 
 const theme = {
   teal: '#1493A4',
@@ -18,6 +25,13 @@ const theme = {
 const Page = styled.div`
   width: 100%;
   height: 100vh;
+`
+
+const BodyContainer = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  padding: 30px;
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -38,6 +52,9 @@ export default function Main() {
       <GlobalStyle />
       <Page>
         <Header />
+        <BodyContainer>
+          {/* todo add grid here for the sidebar and main body */}
+        </BodyContainer>
       </Page>
     </ThemeProvider>
   )

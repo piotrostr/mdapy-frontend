@@ -21,21 +21,27 @@ const ButtonsContainer = styled.div`
 
 const LogoContainer = styled.div`
   margin-left: 30px;
-  
+`
+
+const Limitter = styled(HeaderContainer)`
+  max-width: 1440px;
+  margin: auto;
 `
 
 export default function Header() {
   return (
     <HeaderContainer>
-      <LogoContainer>
-        <Logo />
-      </LogoContainer>
-      <ButtonsContainer>
-        <ResetButton />
-        <div style={{marginLeft: 25}}>
-          <HelpButton />
-        </div>
-      </ButtonsContainer>
+      <Limitter>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
+        <ButtonsContainer>
+          <ResetButton />
+          <div style={{marginLeft: 25}}>
+            <HelpButton />
+          </div>
+        </ButtonsContainer>
+      </Limitter>
     </HeaderContainer>
   )
 }
