@@ -2,5 +2,9 @@ module.exports = {
   siteMetadata: {
     title: "mdapy-fe",
   },
-  plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-gatsby-cloud"],
+  plugins: [
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-gatsby-cloud",
+    'gatsby-plugin-image'
+  ],
 };
