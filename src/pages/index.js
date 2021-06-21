@@ -54,6 +54,7 @@ export default function Main() {
         <Header />
         <BodyContainer>
           {/* todo add grid here for the sidebar and main body */}
+          <GraphCardPlaceholder />
         </BodyContainer>
       </Page>
     </ThemeProvider>
