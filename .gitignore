@@ -3,5 +3,7 @@ node_modules/
 public
 
 *.swp
-.swp
+*.swo
 
+.*.swp
+.*.swo

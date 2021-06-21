@@ -1,26 +1,42 @@
 import React from 'react'
 import styled from 'styled-components'
 import Logo from './Logo'
-import ResetButton from './ResetButton'
-import HelpButton from './HelpButton'
+import ResetButton from './Button/ResetButton'
+import HelpButton from './Button/HelpButton'
 
-const Header = styled.div`
+const HeaderContainer = styled.div`
   width: 100%;
   height: 100px;
   background-color: white;
-  padding: 5px 20px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-export default function () {
+const ButtonsContainer = styled.div`
+  margin-right: 30px;
+  display: flex;
+  flex-direction: row;
+`
+
+const LogoContainer = styled.div`
+  margin-left: 30px;
+  
+`
+
+export default function Header() {
   return (
-    <Header>
-      <Logo />
-      <ResetButton />
-      <HelpButton />
-    </Header>
+    <HeaderContainer>
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
+      <ButtonsContainer>
+        <ResetButton />
+        <div style={{marginLeft: 25}}>
+          <HelpButton />
+        </div>
+      </ButtonsContainer>
+    </HeaderContainer>
   )
 }
 

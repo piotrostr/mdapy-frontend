@@ -1,11 +1,9 @@
 import * as React from "react"
 import Header from '../components/Header'
-import styled, { ThemeProvider } from 'styled-components'
-
-const Page = styled.div`
-  width: 100%;
-  height: 100%;
-`
+import '@fontsource/inter'
+import '@fontsource/work-sans'
+import '@fontsource/ibm-plex-sans'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 const theme = {
   teal: '#1493A4',
@@ -17,13 +15,31 @@ const theme = {
   stroke: '#DEE5EF'
 }
 
-export default function () {
+const Page = styled.div`
+  width: 100%;
+  height: 100vh;
+`
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => props.theme.stroke};
+    padding: 0;
+    margin: 0;
+  }
+  html {
+    padding: 0;
+    margin: 0;
+  }
+`
+
+export default function Main() {
   return (
-    <Page>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Page>
         <Header />
-      </ThemeProvider>
-    </Page>
+      </Page>
+    </ThemeProvider>
   )
 }
 

@@ -1,14 +1,15 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 
-export default function Logo() {
-  return(
+export default function ExportButton() {
+  return (
     <StaticImage 
-      src="../images/logo.svg"
+      src="../../images/export.svg"
       alt="logo"
       layout="fixed"
-      width={85}
-      height={87}
+      width={17}
+      height={17}
     />
   )
 }
+
