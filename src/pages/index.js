@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import '@fontsource/inter'
 import '@fontsource/work-sans'
@@ -24,14 +24,22 @@ const theme = {
 
 const Page = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 180vh;
+`
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const BodyContainer = styled.div`
   width: 100%;
   max-width: 1440px;
   margin: auto;
-  padding: 30px;
+  display: flex;
+  padding-top: 25px;
+  flex-direction: row;
+  justify-content: center;
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -47,6 +55,20 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default function Main() {
+  const [state, setState] = useState({
+    dataset: null,
+    bestAgeCutOff: null,
+    primaryDecayConstant: null,
+    secondaryDecayConstant: null,
+    thirdDecayConstant: null,
+    primaryLongTermVar: null,
+    secondaryLongTermVar: null,
+    primaryCalibrationUncertainty: null,
+    secondaryCalibrationUncertainty: null,
+    primaryDecayUncertainty: null,
+    secondaryDecayUncertainty: null
+  })
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -54,6 +76,7 @@ export default function Main() {
         <Header />
         <BodyContainer>
           {/* todo add grid here for the sidebar and main body */}
+          <InputPanel state={state} setState={setState} />
           <GraphCardPlaceholder />
         </BodyContainer>
       </Page>
