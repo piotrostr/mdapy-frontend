@@ -6,5 +6,5 @@ export default styled.div`
   font-weight: normal;
   font-size: 14px;
   line-height: 140%;
-  color: ${props => props.theme.darkerGray};
+  color: #73839C;
 `
