@@ -110,8 +110,8 @@ export default function InputPanel({ state, setState }) {
           <Dropdown 
             styles={customStyles}
             className={dropdown} 
+            value={{ label: state.dataset }}
             onChange={handleChange} 
-            defaultValue={state.dataset} 
             options={options} 
             placeholder=""
           />
@@ -132,7 +132,7 @@ export default function InputPanel({ state, setState }) {
           Best Age Cut Off
         </MediumText>
         <BigInput 
-          value={state.bestAgeCutOff} 
+          value={state.bestAgeCutOff ? state.bestAgeCutOff : ''}
           onChange={e => setState({ 
             ...state,
             bestAgeCut: e.target.value 
@@ -145,7 +145,7 @@ export default function InputPanel({ state, setState }) {
           U238 Decay Constant
         </MediumText>
         <BigInput 
-          value={state.primaryDecayConstant} 
+          value={state.primaryDecayConstant ? state.primaryDecayConstant : ''}
           onChange={e => setState({ 
             ...state, 
             primaryDecayConstant: e.target.value 
@@ -158,7 +158,7 @@ export default function InputPanel({ state, setState }) {
           U235 Decay Constant
         </MediumText>
         <BigInput 
-          value={state.secondaryDecayConstant} 
+          value={state.secondaryDecayConstant ? state.secondaryDecayConstant : ''}
           onChange={e => setState({ 
             ...state, 
             secondaryDecayConstant: e.target.value 
@@ -171,7 +171,7 @@ export default function InputPanel({ state, setState }) {
           U238/U235 Decay Constant
         </MediumText>
         <BigInput 
-          value={state.thirdDecayConstant} 
+          value={state.thirdDecayConstant ? state.thirdDecayConstant : ''}
           onChange={e => setState({ 
             ...state, 
             thirdDecayConstant: e.target.value 
@@ -188,7 +188,7 @@ export default function InputPanel({ state, setState }) {
           Long Term Excess Variance: U-Pb 238/206
         </LightText>
         <SmallInput 
-          value={state.primaryLongTermVar}
+          value={state.primaryLongTermVar ? state.primaryLongTermVar : ''}
           onChange={e => setState({
             ...state,
             primaryLongTermVar: e.target.value
@@ -201,7 +201,7 @@ export default function InputPanel({ state, setState }) {
           Long Term Excess Variance: Pb-Pb 207/206
         </LightText>
         <SmallInput 
-          value={state.secondaryLongTermVar}
+          value={state.secondaryLongTermVar ? state.secondaryLongTermVar : ''}
           onChange={e => setState({
             ...state,
             secondaryLongTermVar: e.target.value
@@ -214,7 +214,7 @@ export default function InputPanel({ state, setState }) {
           Sy Calibration Uncertainty U-Pb 238/206
         </LightText>
         <SmallInput 
-          value={state.primaryCalibrationUncertainty}
+          value={state.primaryCalibrationUncertainty ? state.primaryCalibrationUncertainty : ''}
           onChange={e => setState({
             ...state,
             primaryCalibrationUncertainty: e.target.value
@@ -227,7 +227,7 @@ export default function InputPanel({ state, setState }) {
           Sy Calibration Uncertainty Pb-Pb 207/206
         </LightText>
         <SmallInput 
-          value={state.secondaryCalibrationUncertainty}
+          value={state.secondaryCalibrationUncertainty ? state.secondaryCalibrationUncertainty : ''}
           onChange={e => setState({
             ...state,
             secondaryCalibrationUncertainty: e.target.value
@@ -240,7 +240,7 @@ export default function InputPanel({ state, setState }) {
           Decay Constant Uncertainty U 238
         </LightText>
         <SmallInput 
-          value={state.primaryDecayUncertainty}
+          value={state.primaryDecayUncertainty ? state.primaryDecayUncertainty : ''}
           onChange={e => setState({
             ...state,
             primaryDecayUncertainty: e.target.value
@@ -253,7 +253,7 @@ export default function InputPanel({ state, setState }) {
           Decay Constant Uncertainty U 235
         </LightText>
         <SmallInput 
-          value={state.secondaryDecayUncertainty}
+          value={state.secondaryDecayUncertainty ? state.secondaryDecayUncertainty : ''}
           onChange={e => setState({
             ...state,
             secondaryDecayUncertainty: e.target.value

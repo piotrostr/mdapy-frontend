@@ -28,7 +28,7 @@ const Limitter = styled(HeaderContainer)`
   margin: auto;
 `
 
-export default function Header() {
+export default function Header({ setState }) {
   return (
     <HeaderContainer>
       <Limitter>
@@ -36,7 +36,7 @@ export default function Header() {
           <Logo />
         </LogoContainer>
         <ButtonsContainer>
-          <ResetButton />
+          <ResetButton setState={setState} />
           <div style={{marginLeft: 25}}>
             <HelpButton />
           </div>

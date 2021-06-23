@@ -73,7 +73,7 @@ export default function Main() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Page>
-        <Header />
+        <Header setState={setState} />
         <BodyContainer>
           {/* todo add grid here for the sidebar and main body */}
           <InputPanel state={state} setState={setState} />
