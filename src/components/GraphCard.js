@@ -4,7 +4,7 @@ import { Card } from './GraphCardPlaceholder'
 export default function GraphCardPlaceholder() {
   return (
     <Card>
-
+      # todo
     </Card>
   )
 }
