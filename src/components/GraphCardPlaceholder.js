@@ -4,7 +4,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 import MediumText from './Text/MediumText'
 import LightText from './Text/LightText'
 
-const Card = styled.div`
+export const Card = styled.div`
   width: 930px;
   height: 584px;
   background-color: #FFFFFF;
