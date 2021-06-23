@@ -3,12 +3,14 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import '@fontsource/inter'
 import '@fontsource/work-sans'
 import '@fontsource/ibm-plex-sans'
+import 'handsontable/dist/handsontable.full.css'
 
 import Header from '../components/Header'
 import InputPanel from '../components/InputPanel'
 import DataSummaryPanel from '../components/DataSummaryPanel'
 import SamplesPanel from '../components/SamplesPanel'
 import AgeDimensionsPanel from '../components/AgeDimensionsPanel'
+import DataInputCard from '../components/DataInputCard'
 import GraphCard from '../components/GraphCard'
 import GraphCardPlaceholder from '../components/GraphCardPlaceholder'
 
@@ -57,6 +59,8 @@ const GlobalStyle = createGlobalStyle`
 export default function Main() {
   const [state, setState] = useState({
     dataset: null,
+    sigma: null,
+    uncertaintyFormat: null,
     bestAgeCutOff: null,
     primaryDecayConstant: null,
     secondaryDecayConstant: null,
@@ -66,7 +70,8 @@ export default function Main() {
     primaryCalibrationUncertainty: null,
     secondaryCalibrationUncertainty: null,
     primaryDecayUncertainty: null,
-    secondaryDecayUncertainty: null
+    secondaryDecayUncertainty: null,
+    table: {}
   })
 
   return (
@@ -77,7 +82,11 @@ export default function Main() {
         <BodyContainer>
           {/* todo add grid here for the sidebar and main body */}
           <InputPanel state={state} setState={setState} />
-          <GraphCardPlaceholder />
+          {
+            state.dataset 
+              ?  <DataInputCard state={state} setState={setState} />
+              :  <GraphCardPlaceholder />
+          }
         </BodyContainer>
       </Page>
     </ThemeProvider>

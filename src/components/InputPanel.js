@@ -5,6 +5,7 @@ import MediumText from '../components/Text/MediumText'
 import LightText from '../components/Text/LightText'
 import BoldText from '../components/Text/BoldText'
 import LoadDataButton from '../components/Button/LoadDataButton'
+import { SelectSigma, SelectUncertainty } from '../components/DotInput'
 import { dropdown } from './InputPanel.module.css'
 
 const Card = styled.div`
@@ -66,6 +67,8 @@ export default function InputPanel({ state, setState }) {
   function handleChange(selectedOption) {
     setState({
       dataset: selectedOption.value,
+      sigma: '1 sx',
+      uncertaintyFormat: 'Percent %',
       bestAgeCutOff: 1500,
       primaryDecayConstant: '1.55125*(10**-10)',
       secondaryDecayConstant: '9.8485*(10**-10)',
@@ -75,7 +78,8 @@ export default function InputPanel({ state, setState }) {
       primaryCalibrationUncertainty: 0.6,
       secondaryCalibrationUncertainty: 0.6,
       primaryDecayUncertainty: 0.16,
-      secondaryDecayUncertainty: 0.20
+      secondaryDecayUncertainty: 0.20,
+      table: {}
     })
   }
   const customStyles = {
@@ -122,11 +126,13 @@ export default function InputPanel({ state, setState }) {
           Select Sigma
         </MediumText>
       </Row>
+      <SelectSigma state={state} setState={setState} />
       <Row>
         <MediumText>
           Select Uncertainty Format
         </MediumText>
       </Row>
+      <SelectUncertainty state={state} setState={setState} />
       <Row>
         <MediumText>
           Best Age Cut Off
