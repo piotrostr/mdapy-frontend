@@ -3,7 +3,6 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import '@fontsource/inter'
 import '@fontsource/work-sans'
 import '@fontsource/ibm-plex-sans'
-import 'handsontable/dist/handsontable.full.css'
 
 import Header from '../components/Header'
 import InputPanel from '../components/InputPanel'
@@ -73,8 +72,7 @@ export default function Main() {
     secondaryDecayUncertainty: null,
     table: {}
   })
-
-  return (
+return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Page>

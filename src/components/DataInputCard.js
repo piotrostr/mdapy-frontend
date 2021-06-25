@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import { Card } from './GraphCardPlaceholder'
-import { HotTable } from '@handsontable/react'
-import Handsontable from 'handsontable'
+import Spreadsheet from 'react-spreadsheet'
 
-export default class DataInputCard extends React.Component {
+const ScrollContainer = styled.div`
+  margin: 50px 50px 50px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+`
 
-  constructor(props) {
-    super(props)
-    this.state = {}
+export default function DataInputCard({ state, setState }) {
+  const data = [
+      [{ value: "Vanilla" }, { value: "Chocolate" }],
+      [{ value: "Strawberry" }, { value: "Cookies" }],
+  ]
+  const columnLabels = ['first', 'second']
+
+  function onChange(change) {
+    setState({ ...state, table: { change } })
   }
 
-  render() {
-    console.log(this.state)
-    return (
-      <Card>
-        # todo
-      </Card>
-    )
-  }
+  // TODO: 
+  //  after the onChange is added paste no longer works :/
+  //  add scrolling and a fading gradient so it looks nice
+
+  useEffect(() => console.log(data), [data])
+
+  return (
+    <Card>
+      <ScrollContainer>
+        <Spreadsheet 
+          data={data} 
+          columnLabels={columnLabels}
+        />
+      </ScrollContainer>
+    </Card>
+  )
 }
-
