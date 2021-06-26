@@ -38,9 +38,11 @@ export default function Main() {
       ]
     },
     dataLoaded: false,
-    graphReady: false
+    graphReady: false,
+    samplesToPlot: 'Sample 1',
+    agePlottingDims: '0asdf4'
   })
-return (
+  return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Page>

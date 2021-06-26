@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import LightText from './Text/LightText'
 
-const Circle = styled.div`
+export const Circle = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 20px;
@@ -14,7 +14,7 @@ const Circle = styled.div`
   margin-right: 10px;
 `
 
-const Row = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +23,7 @@ const Row = styled.div`
   justify-content: flex-start;
 `
 
-const ShortRow = styled.div`
+export const ShortRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -33,7 +33,7 @@ const ShortRow = styled.div`
   margin-right: 16px;
 `
 
-const Fill = styled.div`
+export const Fill = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 10px;

@@ -17,40 +17,22 @@ const data = [
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   width: 100%;
   align-items: center;
   height: 40px;
   border-bottom: 1px solid #DEE5EF;
 `
 
-function Table({ data }) {
-  // add overflow so it scrolls?
-  return (
-    <div style={{ overflow: 'hidden' }}>
-      <Row>
-        <MediumText>
-          Sample Id
-        </MediumText>
-        <MediumText>
-          Sample Size 
-        </MediumText>
-      </Row>
-      {
-        data.map(([id, size], key) => 
-          <Row key={key}>
-            <LightBoldText>
-              {id}
-            </LightBoldText>
-            <LightText>
-              {size}
-            </LightText>
-          </Row>
-        )
-      }
-    </div>
-  )
-}
+const Entry = styled.div`
+  margin-left: 15px;
+  width: 36%;
+`
+
+const Scroll = styled.div`
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+`
 
 export default function DataSummaryPanel({ state, setState }) {
   return (
@@ -58,7 +40,36 @@ export default function DataSummaryPanel({ state, setState }) {
       <SmallCardHeader>
         Data Upload Summary
       </SmallCardHeader>
-      <Table data={data} />
+      <Row>
+        <Entry>
+          <MediumText>
+            Sample Id
+          </MediumText>
+        </Entry>
+        <Entry>
+          <MediumText>
+            Sample Size 
+          </MediumText>
+        </Entry>
+      </Row>
+      <Scroll>
+        {
+          data.map(([id, size], key) => 
+            <Row key={key}>
+              <Entry>
+                <LightBoldText>
+                  {id}
+                </LightBoldText>
+              </Entry>
+              <Entry>
+                <LightText>
+                  {size}
+                </LightText>
+              </Entry>
+            </Row>
+          )
+        }
+      </Scroll>
     </SmallCard>
   )
 }

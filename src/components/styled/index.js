@@ -64,12 +64,14 @@ export const SmallCard = styled.div`
   height: 270px;
   background-color: #FFFFFF;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 `
 
 export const SmallCardHeader = styled(MediumText)`
   position: relative;
   left: 20px;
   top: 11px;
-  margin-bottom: 18px;
+  margin-bottom: 30px;
 `
 
