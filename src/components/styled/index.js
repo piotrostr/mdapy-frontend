@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import MediumText from '../Text/MediumText'
 
 export const theme = {
   teal: '#1493A4',
@@ -57,3 +58,18 @@ export const Centered = styled.div`
   text-align: center;
   margin-top: 30px;
 `
+
+export const SmallCard = styled.div`
+  width: 290px;
+  height: 270px;
+  background-color: #FFFFFF;
+  margin-bottom: 30px;
+`
+
+export const SmallCardHeader = styled(MediumText)`
+  position: relative;
+  left: 20px;
+  top: 11px;
+  margin-bottom: 18px;
+`
+
