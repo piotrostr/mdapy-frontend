@@ -40,7 +40,7 @@ export default function Main() {
     dataLoaded: false,
     graphReady: false,
     samplesToPlot: 'Sample 1',
-    agePlottingDims: '0asdf4'
+    agePlottingDims: '04',
   })
   return (
     <ThemeProvider theme={theme}>
@@ -48,7 +48,6 @@ export default function Main() {
       <Page>
         <Header setState={setState} />
         <BodyContainer>
-          {/* todo add grid here for the sidebar and main body */}
           <InputPanel state={state} setState={setState} />
           {
             state.dataset 

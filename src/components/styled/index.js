@@ -75,3 +75,10 @@ export const SmallCardHeader = styled(MediumText)`
   margin-bottom: 30px;
 `
 
+export const Row = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`

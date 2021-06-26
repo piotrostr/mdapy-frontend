@@ -5,6 +5,7 @@ import MediumText from '../components/Text/MediumText'
 import LightText from '../components/Text/LightText'
 import BoldText from '../components/Text/BoldText'
 import LoadDataButton from '../components/Button/LoadDataButton'
+import ReloadDataButton from '../components/Button/ReloadDataButton'
 import { SelectSigma, SelectUncertainty } from '../components/DotInput'
 import { dropdown } from './InputPanel.module.css'
 
@@ -81,6 +82,7 @@ export default function InputPanel({ state, setState }) {
         '207Pb/206Pb_sx'
       ]
     setState({
+      ...state,
       dataset: selectedOption.value,
       sigma: '1 sx',
       uncertaintyFormat: 'Percent %',
@@ -200,10 +202,12 @@ export default function InputPanel({ state, setState }) {
           style={state.thirdDecayConstant && { borderColor: '#1493A4' }}
         />
       </Row>
-      <LightText>
-        Input 0 if systematic uncertainties not required 
-        in final uncertainty calculation
-      </LightText>
+      <div style={{ marginTop: 30, marginBottom: 18 }}>
+        <LightText>
+          Input 0 if systematic uncertainties not required 
+          in final uncertainty calculation
+        </LightText>
+      </div>
       <Row>
         <LightText>
           Long Term Excess Variance: U-Pb 238/206
@@ -283,7 +287,11 @@ export default function InputPanel({ state, setState }) {
         />
       </Row>
       <div style={{ marginTop: 20 }}>
-        <LoadDataButton onClick={() => setState({ ...state, dataLoaded: true })} />
+        {
+          !state.dataLoaded 
+            ? <LoadDataButton onClick={() => setState({ ...state, dataLoaded: true })} />
+            : <ReloadDataButton onClick={() => setState({ ...state, dataLoaded: false })} />
+        }
       </div>
     </Card>
   )
