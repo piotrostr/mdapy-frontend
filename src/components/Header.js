@@ -4,9 +4,13 @@ import Logo from './Logo'
 import ResetButton from './Button/ResetButton'
 import HelpButton from './Button/HelpButton'
 
-const HeaderContainer = styled.div`
+const HeaderRack = styled.div`
   width: 100%;
   height: 100px;
+`
+
+const HeaderContainer = styled(HeaderRack)`
+  display: block;
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -33,19 +37,21 @@ const Limitter = styled(HeaderContainer)`
 
 export default function Header({ setState }) {
   return (
-    <HeaderContainer>
-      <Limitter>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
-        <ButtonsContainer>
-          <ResetButton setState={setState} />
-          <div style={{marginLeft: 25}}>
-            <HelpButton />
-          </div>
-        </ButtonsContainer>
-      </Limitter>
-    </HeaderContainer>
+    <HeaderRack>
+      <HeaderContainer>
+        <Limitter>
+          <LogoContainer>
+            <Logo />
+          </LogoContainer>
+          <ButtonsContainer>
+            <ResetButton setState={setState} />
+            <div style={{marginLeft: 25}}>
+              <HelpButton />
+            </div>
+          </ButtonsContainer>
+        </Limitter>
+      </HeaderContainer>
+    </HeaderRack>
   )
 }
 
