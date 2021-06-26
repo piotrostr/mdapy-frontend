@@ -65,6 +65,21 @@ const options = [
 
 export default function InputPanel({ state, setState }) {
   function handleChange(selectedOption) {
+    const columnLabels = selectedOption.value === 'Best Age and sx' 
+      ? 
+      [ 
+        'Sample_ID', 
+        'Best_Age',
+        'Best_Age_sx'
+      ]
+      :
+      [
+        'Sample_ID', 
+        '206Pb/238U',
+        '206Pb/238U_sx',
+        '207Pb/206Pb',
+        '207Pb/206Pb_sx'
+      ]
     setState({
       dataset: selectedOption.value,
       sigma: '1 sx',
@@ -79,7 +94,7 @@ export default function InputPanel({ state, setState }) {
       secondaryCalibrationUncertainty: 0.6,
       primaryDecayUncertainty: 0.16,
       secondaryDecayUncertainty: 0.20,
-      table: {}
+      table: { ...state.table, columnLabels: columnLabels }
     })
   }
   const customStyles = {

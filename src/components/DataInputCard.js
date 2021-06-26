@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Card } from './GraphCardPlaceholder'
 import Spreadsheet from 'react-spreadsheet'
@@ -11,28 +11,19 @@ const ScrollContainer = styled.div`
 `
 
 export default function DataInputCard({ state, setState }) {
-  const data = [
-      [{ value: "Vanilla" }, { value: "Chocolate" }],
-      [{ value: "Strawberry" }, { value: "Cookies" }],
-  ]
-  const columnLabels = ['first', 'second']
-
-  function onChange(change) {
-    setState({ ...state, table: { change } })
-  }
-
-  // TODO: 
-  //  after the onChange is added paste no longer works :/
-  //  add scrolling and a fading gradient so it looks nice
-
-  useEffect(() => console.log(data), [data])
-
   return (
     <Card>
       <ScrollContainer>
         <Spreadsheet 
-          data={data} 
-          columnLabels={columnLabels}
+          data={state.table.data} 
+          onChange={change => setState({ 
+            ...state,
+            table: {
+              ...state.table,
+              data: change
+            }
+          })}
+          columnLabels={state.table.columnLabels}
         />
       </ScrollContainer>
     </Card>

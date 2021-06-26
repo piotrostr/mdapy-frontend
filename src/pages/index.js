@@ -70,7 +70,11 @@ export default function Main() {
     secondaryCalibrationUncertainty: null,
     primaryDecayUncertainty: null,
     secondaryDecayUncertainty: null,
-    table: {}
+    table: {
+      columnLabels: [],
+      data: [['foo', 'bar', 'baz'], [], [], [], [], [], [], [], [], []]
+    },
+    dataLoaded: false
   })
 return (
     <ThemeProvider theme={theme}>
