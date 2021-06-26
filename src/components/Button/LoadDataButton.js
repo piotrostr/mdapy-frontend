@@ -10,6 +10,11 @@ const Button = styled.div`
   height: 49px;
   background: ${props => props.theme.teal};
   border-radius: 4px;
+  user-select: none;
+  &:hover {
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+    transition: 0.25s ease-in-out;
+  }
 `
 
 export default function LoadDataButton({ onClick }) {

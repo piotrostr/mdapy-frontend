@@ -4,4 +4,8 @@ export default styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  user-select: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `

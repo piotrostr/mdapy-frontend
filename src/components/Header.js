@@ -11,6 +11,9 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 999;
 `
 
 const ButtonsContainer = styled.div`
