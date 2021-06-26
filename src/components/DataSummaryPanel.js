@@ -10,6 +10,8 @@ const data = [
   ['Uk025', 473],
   ['Uk025', 473],
   ['Uk025', 473],
+  ['Uk025', 473],
+  ['Uk025', 473],
 ]
 
 const Row = styled.div`
@@ -25,7 +27,7 @@ const Row = styled.div`
 function Table({ data }) {
   // add overflow so it scrolls?
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       <Row>
         <MediumText>
           Sample Id

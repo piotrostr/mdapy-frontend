@@ -5,6 +5,7 @@ import ResetButton from './Button/ResetButton'
 import HelpButton from './Button/HelpButton'
 
 const HeaderContainer = styled.div`
+  display: flex;
   align-self: center;
   width: 100%;
   height: 100px;
