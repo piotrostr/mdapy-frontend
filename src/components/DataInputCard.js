@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Card } from './GraphCardPlaceholder'
+import { LargeCard } from './styled'
 import Spreadsheet from 'react-spreadsheet'
 
 const ScrollContainer = styled.div`
@@ -12,7 +12,7 @@ const ScrollContainer = styled.div`
 
 export default function DataInputCard({ state, setState }) {
   return (
-    <Card>
+    <LargeCard>
       <ScrollContainer>
         <Spreadsheet 
           data={state.table.data} 
@@ -26,6 +26,6 @@ export default function DataInputCard({ state, setState }) {
           columnLabels={state.table.columnLabels}
         />
       </ScrollContainer>
-    </Card>
+    </LargeCard>
   )
 }

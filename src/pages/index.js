@@ -1,59 +1,19 @@
 import React, { useState } from 'react'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import '@fontsource/inter'
 import '@fontsource/work-sans'
 import '@fontsource/ibm-plex-sans'
-
+import { ThemeProvider } from 'styled-components'
+import { 
+  theme, 
+  Page, 
+  BodyContainer,
+  GlobalStyle
+} from '../components/styled'
 import Header from '../components/Header'
 import InputPanel from '../components/InputPanel'
-import DataSummaryPanel from '../components/DataSummaryPanel'
-import SamplesPanel from '../components/SamplesPanel'
-import AgeDimensionsPanel from '../components/AgeDimensionsPanel'
 import DataInputCard from '../components/DataInputCard'
-import GraphCard from '../components/GraphCard'
 import GraphCardPlaceholder from '../components/GraphCardPlaceholder'
-
-const theme = {
-  teal: '#1493A4',
-  gray: '#B7B7B7',
-  fireOrange: '#293854',
-  darkerGray: '#73839C',
-  lightGray: '#F8F8F9',
-  text: '#293854',
-  stroke: '#DEE5EF'
-}
-
-const Page = styled.div`
-  width: 100%;
-  height: 180vh;
-`
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const BodyContainer = styled.div`
-  width: 100%;
-  max-width: 1440px;
-  margin: auto;
-  display: flex;
-  padding-top: 25px;
-  flex-direction: row;
-  justify-content: center;
-`
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${props => props.theme.stroke};
-    padding: 0;
-    margin: 0;
-  }
-  html {
-    padding: 0;
-    margin: 0;
-  }
-`
+import DataLoadedDashboard from '../components/DataLoadedDashboard'
 
 export default function Main() {
   const [state, setState] = useState({
@@ -72,9 +32,13 @@ export default function Main() {
     secondaryDecayUncertainty: null,
     table: {
       columnLabels: [],
-      data: [['foo', 'bar', 'baz'], [], [], [], [], [], [], [], [], []]
+      data: [
+        ['foo', 'bar', 'baz'], 
+        [], [], [], [], [], [], [], [], []
+      ]
     },
-    dataLoaded: false
+    dataLoaded: false,
+    graphReady: false
   })
 return (
     <ThemeProvider theme={theme}>
@@ -86,8 +50,22 @@ return (
           <InputPanel state={state} setState={setState} />
           {
             state.dataset 
-              ?  <DataInputCard state={state} setState={setState} />
-              :  <GraphCardPlaceholder />
+              ?  
+              (
+                !state.dataLoaded 
+                ?  
+                <DataInputCard 
+                  state={state} 
+                  setState={setState}
+                />
+                : 
+                <DataLoadedDashboard 
+                  state={state} 
+                  setState={setState} 
+                />
+              )
+              :  
+              <GraphCardPlaceholder />
           }
         </BodyContainer>
       </Page>

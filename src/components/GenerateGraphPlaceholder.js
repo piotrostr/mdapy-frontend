@@ -5,7 +5,7 @@ import MediumText from './Text/MediumText'
 import LightText from './Text/LightText'
 import { LargeCard, Centered } from './styled'
 
-export default function GraphCardPlaceholder() {
+export default function GenerateGraphPlaceholder() {
   return (
     <LargeCard>
       <StaticImage 
@@ -18,12 +18,12 @@ export default function GraphCardPlaceholder() {
       <Centered>
         <div style={{ marginBottom: 8 }}>
           <MediumText style={{ fontSize: 16 }}>
-            No Data Yet
+            Generate Graphs
           </MediumText>
         </div>
         <LightText>
-          Complete the fields and load your data into 
-          the input form on the left to begin
+          Generate graphs by selecting your samples and plotting
+          method above
         </LightText>
       </Centered>
     </LargeCard>

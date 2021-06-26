@@ -1,10 +1,10 @@
 import React from 'react'
-import { Card } from './GraphCardPlaceholder'
+import { LargeCard } from './styled'
 
 export default function GraphCardPlaceholder() {
   return (
-    <Card>
+    <LargeCard>
       # todo
-    </Card>
+    </LargeCard>
   )
 }

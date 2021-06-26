@@ -283,7 +283,7 @@ export default function InputPanel({ state, setState }) {
         />
       </Row>
       <div style={{ marginTop: 20 }}>
-        <LoadDataButton />
+        <LoadDataButton onClick={() => setState({ ...state, dataLoaded: true })} />
       </div>
     </Card>
   )
