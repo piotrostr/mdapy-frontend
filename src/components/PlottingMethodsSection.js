@@ -29,11 +29,3 @@ export default function PlottingMethodsSections({ state, setState }) {
   )
 }
 
-// questions:
-// what is the sample id dropdown for 
-// how shall I go about getting that summary
-// shall I make it so that after the data is fed 
-// all the three methods are pre-fetched 
-// or
-// on click of each method it starts to process like isoplotr
-// 
