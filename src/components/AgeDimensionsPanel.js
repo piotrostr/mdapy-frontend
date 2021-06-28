@@ -22,7 +22,6 @@ const SmallInput = styled.input`
 `
 
 export default function AgeDimensionPanel({ state, setState }) {
-  console.log(Object.keys(state))
   return (
     <SmallCard>
       <SmallCardHeader>

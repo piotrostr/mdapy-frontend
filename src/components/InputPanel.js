@@ -65,6 +65,19 @@ const options = [
 ]
 
 export default function InputPanel({ state, setState }) {
+  async function loadData() {
+    const url = state.urlBase + 'validate'
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application-json'
+      },
+      body: JSON.stringify(state)
+    }) 
+    const json = await res.json()
+    console.log(json)
+    setState({ ...state, dataLoaded: true })
+  }
   function handleChange(selectedOption) {
     const columnLabels = selectedOption.value === 'Best Age and sx' 
       ? 
@@ -289,7 +302,7 @@ export default function InputPanel({ state, setState }) {
       <div style={{ marginTop: 20 }}>
         {
           !state.dataLoaded 
-            ? <LoadDataButton onClick={() => setState({ ...state, dataLoaded: true })} />
+            ? <LoadDataButton onClick={loadData} />
             : <ReloadDataButton onClick={() => setState({ ...state, dataLoaded: false })} />
         }
       </div>

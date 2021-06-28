@@ -7,3 +7,6 @@
 // on click of each method it starts to process like isoplotr
 // scaling on lower res devices? 
 // looks great on HD, 4k, okay on macbook screen, bad for older devices 
+// what is the exception in the fifth cell?
+// I got CalledProcessError: Command '['Rscript', 'R_Scripts/IsoPlotR.R', 'Data/ages_errors_calculated.xlsx', '["UK027", "UK025"]']' returned non-zero exit status 1.
+

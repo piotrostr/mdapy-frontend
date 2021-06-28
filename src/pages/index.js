@@ -17,6 +17,7 @@ import DataLoadedDashboard from '../components/DataLoadedDashboard'
 
 export default function Main() {
   const [state, setState] = useState({
+    urlBase: 'http://localhost:5000/',
     dataset: null,
     sigma: null,
     uncertaintyFormat: null,
