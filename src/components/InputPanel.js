@@ -69,6 +69,26 @@ const options = [
 ]
 
 export default function InputPanel({ state, setState }) {
+  function checkInputComplete(state) {
+    if (
+      state.dataset
+      && state.sigma
+      && state.uncertaintyFormat
+      && state.bestAgeCutOff
+      && state.primaryDecayConstant
+      && state.secondaryDecayConstant
+      && state.thirdDecayConstant
+      && state.primaryLongTermVar
+      && state.secondaryLongTermVar
+      && state.primaryCalibrationUncertainty
+      && state.secondaryCalibrationUncertainty
+      && state.primaryDecayUncertainty
+      && state.secondaryDecayUncertainty
+    )
+      return true
+    else 
+      return false
+  }
   function reloadData() {
     setState({ ...state, dataLoaded: false })
   }
@@ -393,7 +413,7 @@ export default function InputPanel({ state, setState }) {
         {
           !state.dataLoaded 
             ? (
-              state.dataset 
+              checkInputComplete(state)
                 ? <LoadDataButton onClick={loadData} /> 
                 : <LoadDataButton onClick={() => null} /> 
             )
