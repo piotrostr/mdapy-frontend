@@ -302,7 +302,11 @@ export default function InputPanel({ state, setState }) {
       <div style={{ marginTop: 20 }}>
         {
           !state.dataLoaded 
-            ? <LoadDataButton onClick={loadData} />
+            ? (
+              state.dataset 
+                ? <LoadDataButton onClick={loadData} /> 
+                : <LoadDataButton onClick={() => null} /> 
+            )
             : <ReloadDataButton onClick={() => setState({ ...state, dataLoaded: false })} />
         }
       </div>
