@@ -82,3 +82,47 @@ export const Row = styled.div`
   justify-content: space-between;
   align-items: center;
 `
+
+export const InputPanelCard = styled.div`
+  width: 420px;
+  height: 1019px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 27px 20px 27px;
+  margin-right: 19px;
+`
+
+export const InputPanelRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 12px;
+`
+
+export const Input = styled.input`
+  background: #FFFFFF;
+  border: 1px solid #DEE5EF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 10px 16px 10px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+  color: #73839C;
+`
+
+export const BigInput = styled(Input)`
+  width: 163px;
+  height: 40px;
+`
+
+export const SmallInput = styled(Input)`
+  width: 78px;
+  height: 40px;
+`

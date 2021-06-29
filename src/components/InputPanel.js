@@ -1,62 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
-import Dropdown from 'react-select'
-import MediumText from '../components/Text/MediumText'
-import LightText from '../components/Text/LightText'
-import BoldText from '../components/Text/BoldText'
-import LoadDataButton from '../components/Button/LoadDataButton'
-import ReloadDataButton from '../components/Button/ReloadDataButton'
-import { SelectSigma, SelectUncertainty } from '../components/DotInput'
-import { dropdown } from './InputPanel.module.css'
 import _ from 'lodash'
+import Dropdown from 'react-select'
+import MediumText from './Text/MediumText'
+import LightText from './Text/LightText'
+import BoldText from './Text/BoldText'
+import LoadDataButton from './Button/LoadDataButton'
+import ReloadDataButton from './Button/ReloadDataButton'
+import { firstDatasetPlaceholder, secondDatasetPlaceholder } from '../data'
+import { SelectSigma, SelectUncertainty } from './DotInput'
+import { dropdown } from './InputPanel.module.css'
+import { 
+  InputPanelCard as Card,
+  InputPanelRow as Row, 
+  Input, 
+  BigInput, 
+  SmallInput 
+} from './styled'
 
-// todo fix after restart it doesnt reload right
-// todo fix doesnt add to the second column, 
-// add more rows based on the rows required
-
-const Card = styled.div`
-  width: 420px;
-  height: 1019px;
-  background-color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 27px 20px 27px;
-  margin-right: 19px;
-`
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-  margin-bottom: 12px;
-`
-
-const Input = styled.input`
-  background: #FFFFFF;
-  border: 1px solid #DEE5EF;
-  box-sizing: border-box;
-  border-radius: 4px;
-  padding: 10px 16px 10px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 140%;
-  color: #73839C;
-`
-
-const BigInput = styled(Input)`
-  width: 163px;
-  height: 40px;
-`
-
-const SmallInput = styled(Input)`
-  width: 78px;
-  height: 40px;
-`
 
 const options = [
   {
@@ -91,7 +51,11 @@ export default function InputPanel({ state, setState }) {
       return false
   }
   function reloadData() {
-    setState({ ...state, dataLoaded: false, dataSummary: [] })
+    setState(state => ({
+      ...state, 
+      dataLoaded: false,
+      dataSummary: [] 
+    }))
   }
   async function loadData() {
     const url = state.urlBase + 'validate'
@@ -108,7 +72,11 @@ export default function InputPanel({ state, setState }) {
       Object.values(json.Sample_ID), 
       Object.values(json.Sample_Size)
     ) 
-    setState({ ...state, dataLoaded: true, dataSummary: dataSummary })
+    setState(state => ({
+      ...state, 
+      dataLoaded: true,
+      dataSummary: dataSummary 
+    }))
   }
   function handleChange(selectedOption) {
     const columnLabels = selectedOption.value === 'Best Age and sx' 
@@ -142,7 +110,11 @@ export default function InputPanel({ state, setState }) {
       primaryDecayUncertainty: 0.16,
       secondaryDecayUncertainty: 0.20,
       table: { 
-        ...state.table, 
+        data: (
+          selectedOption.value === 'Best Age and sx' 
+            ? firstDatasetPlaceholder
+            : secondDatasetPlaceholder
+        ), 
         columnLabels: columnLabels 
       }
     })
