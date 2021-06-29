@@ -16,13 +16,13 @@ export default function DataInputCard({ state, setState }) {
       <ScrollContainer>
         <Spreadsheet 
           data={state.table.data} 
-          onChange={change => setState({ 
-            ...state,
+          onChange={change => setState(_state => ({ 
+            ..._state,
             table: {
-              ...state.table,
+              ..._state.table,
               data: change
             }
-          })}
+          }))}
           columnLabels={state.table.columnLabels}
         />
       </ScrollContainer>
