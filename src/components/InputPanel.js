@@ -9,6 +9,10 @@ import ReloadDataButton from '../components/Button/ReloadDataButton'
 import { SelectSigma, SelectUncertainty } from '../components/DotInput'
 import { dropdown } from './InputPanel.module.css'
 
+// todo fix after restart it doesnt reload right
+// todo fix doesnt add to the second column, 
+// add more rows based on the rows required
+
 const Card = styled.div`
   width: 420px;
   height: 1019px;
@@ -65,6 +69,9 @@ const options = [
 ]
 
 export default function InputPanel({ state, setState }) {
+  function reloadData() {
+    setState({ ...state, dataLoaded: false })
+  }
   async function loadData() {
     const url = state.urlBase + 'validate'
     const res = await fetch(url, {
@@ -109,7 +116,10 @@ export default function InputPanel({ state, setState }) {
       secondaryCalibrationUncertainty: 0.6,
       primaryDecayUncertainty: 0.16,
       secondaryDecayUncertainty: 0.20,
-      table: { ...state.table, columnLabels: columnLabels }
+      table: { 
+        ...state.table, 
+        columnLabels: columnLabels 
+      }
     })
   }
   const customStyles = {
@@ -168,12 +178,20 @@ export default function InputPanel({ state, setState }) {
           Best Age Cut Off
         </MediumText>
         <BigInput 
-          value={state.bestAgeCutOff ? state.bestAgeCutOff : ''}
+          value={
+            state.bestAgeCutOff 
+              ? state.bestAgeCutOff 
+              : ''
+          }
           onChange={e => setState({ 
             ...state,
-            bestAgeCut: e.target.value 
+            bestAgeCutOff: e.target.value 
           })}
-          style={state.bestAgeCutOff && { borderColor: '#1493A4' }}
+          style={
+            state.bestAgeCutOff 
+              ? { borderColor: '#1493A4' } 
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -181,12 +199,20 @@ export default function InputPanel({ state, setState }) {
           U238 Decay Constant
         </MediumText>
         <BigInput 
-          value={state.primaryDecayConstant ? state.primaryDecayConstant : ''}
+          value={
+            state.primaryDecayConstant 
+              ? state.primaryDecayConstant 
+              : ''
+          }
           onChange={e => setState({ 
             ...state, 
             primaryDecayConstant: e.target.value 
           })}
-          style={state.primaryDecayConstant && { borderColor: '#1493A4' }}
+          style={
+            state.primaryDecayConstant 
+              ? { borderColor: '#1493A4' } 
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -194,12 +220,20 @@ export default function InputPanel({ state, setState }) {
           U235 Decay Constant
         </MediumText>
         <BigInput 
-          value={state.secondaryDecayConstant ? state.secondaryDecayConstant : ''}
+          value={
+            state.secondaryDecayConstant 
+              ? state.secondaryDecayConstant 
+              : ''
+          }
           onChange={e => setState({ 
             ...state, 
             secondaryDecayConstant: e.target.value 
           })}
-          style={state.secondaryDecayConstant && { borderColor: '#1493A4' }}
+          style={
+            state.secondaryDecayConstant 
+              ? { borderColor: '#1493A4' } 
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -207,12 +241,20 @@ export default function InputPanel({ state, setState }) {
           U238/U235 Decay Constant
         </MediumText>
         <BigInput 
-          value={state.thirdDecayConstant ? state.thirdDecayConstant : ''}
+          value={
+            state.thirdDecayConstant 
+              ? state.thirdDecayConstant 
+              : ''
+          }
           onChange={e => setState({ 
             ...state, 
             thirdDecayConstant: e.target.value 
           })}
-          style={state.thirdDecayConstant && { borderColor: '#1493A4' }}
+          style={
+            state.thirdDecayConstant 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <div style={{ marginTop: 30, marginBottom: 18 }}>
@@ -226,12 +268,20 @@ export default function InputPanel({ state, setState }) {
           Long Term Excess Variance: U-Pb 238/206
         </LightText>
         <SmallInput 
-          value={state.primaryLongTermVar ? state.primaryLongTermVar : ''}
+          value={
+            state.primaryLongTermVar 
+              ? state.primaryLongTermVar 
+              : ''
+          }
           onChange={e => setState({
             ...state,
             primaryLongTermVar: e.target.value
           })}
-          style={state.primaryLongTermVar && { borderColor: '#1493A4' }}
+          style={
+            state.primaryLongTermVar 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -239,12 +289,20 @@ export default function InputPanel({ state, setState }) {
           Long Term Excess Variance: Pb-Pb 207/206
         </LightText>
         <SmallInput 
-          value={state.secondaryLongTermVar ? state.secondaryLongTermVar : ''}
+          value={
+            state.secondaryLongTermVar 
+              ? state.secondaryLongTermVar 
+              : ''
+          }
           onChange={e => setState({
             ...state,
             secondaryLongTermVar: e.target.value
           })}
-          style={state.secondaryLongTermVar && { borderColor: '#1493A4' }}
+          style={
+            state.secondaryLongTermVar 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -252,12 +310,20 @@ export default function InputPanel({ state, setState }) {
           Sy Calibration Uncertainty U-Pb 238/206
         </LightText>
         <SmallInput 
-          value={state.primaryCalibrationUncertainty ? state.primaryCalibrationUncertainty : ''}
+          value={
+            state.primaryCalibrationUncertainty 
+              ? state.primaryCalibrationUncertainty 
+              : ''
+          }
           onChange={e => setState({
             ...state,
             primaryCalibrationUncertainty: e.target.value
           })}
-          style={state.primaryCalibrationUncertainty && { borderColor: '#1493A4' }}
+          style={
+            state.primaryCalibrationUncertainty 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -265,12 +331,20 @@ export default function InputPanel({ state, setState }) {
           Sy Calibration Uncertainty Pb-Pb 207/206
         </LightText>
         <SmallInput 
-          value={state.secondaryCalibrationUncertainty ? state.secondaryCalibrationUncertainty : ''}
+          value={
+            state.secondaryCalibrationUncertainty 
+              ? state.secondaryCalibrationUncertainty 
+              : ''
+          }
           onChange={e => setState({
             ...state,
             secondaryCalibrationUncertainty: e.target.value
           })}
-          style={state.secondaryCalibrationUncertainty && { borderColor: '#1493A4' }}
+          style={
+            state.secondaryCalibrationUncertainty 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -278,12 +352,20 @@ export default function InputPanel({ state, setState }) {
           Decay Constant Uncertainty U 238
         </LightText>
         <SmallInput 
-          value={state.primaryDecayUncertainty ? state.primaryDecayUncertainty : ''}
+          value={
+            state.primaryDecayUncertainty 
+              ? state.primaryDecayUncertainty 
+              : ''
+          }
           onChange={e => setState({
             ...state,
             primaryDecayUncertainty: e.target.value
           })}
-          style={state.primaryDecayUncertainty && { borderColor: '#1493A4' }}
+          style={
+            state.primaryDecayUncertainty 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <Row>
@@ -291,12 +373,20 @@ export default function InputPanel({ state, setState }) {
           Decay Constant Uncertainty U 235
         </LightText>
         <SmallInput 
-          value={state.secondaryDecayUncertainty ? state.secondaryDecayUncertainty : ''}
+          value={
+            state.secondaryDecayUncertainty 
+              ? state.secondaryDecayUncertainty 
+              : ''
+          }
           onChange={e => setState({
             ...state,
             secondaryDecayUncertainty: e.target.value
           })}
-          style={state.secondaryDecayUncertainty && { borderColor: '#1493A4' }}
+          style={
+            state.secondaryDecayUncertainty 
+              ? { borderColor: '#1493A4' }
+              : {}
+          }
         />
       </Row>
       <div style={{ marginTop: 20 }}>
@@ -307,7 +397,7 @@ export default function InputPanel({ state, setState }) {
                 ? <LoadDataButton onClick={loadData} /> 
                 : <LoadDataButton onClick={() => null} /> 
             )
-            : <ReloadDataButton onClick={() => setState({ ...state, dataLoaded: false })} />
+          : <ReloadDataButton onClick={reloadData} />
         }
       </div>
     </Card>
