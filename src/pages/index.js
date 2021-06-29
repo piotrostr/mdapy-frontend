@@ -48,6 +48,7 @@ export default function Main() {
         [{'value': 'UK026'}, {'value': '1338,2'}, {'value': '8,9'}]]      
     },
     dataLoaded: false,
+    dataSummary: [],
     graphReady: false,
     samplesToPlot: 'Sample 1',
     agePlottingDims: '04',

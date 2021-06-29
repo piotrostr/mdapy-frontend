@@ -8,6 +8,7 @@ import LoadDataButton from '../components/Button/LoadDataButton'
 import ReloadDataButton from '../components/Button/ReloadDataButton'
 import { SelectSigma, SelectUncertainty } from '../components/DotInput'
 import { dropdown } from './InputPanel.module.css'
+import _ from 'lodash'
 
 // todo fix after restart it doesnt reload right
 // todo fix doesnt add to the second column, 
@@ -71,7 +72,7 @@ const options = [
 export default function InputPanel({ state, setState }) {
   function checkInputComplete(state) {
     if (
-      state.dataset
+      state.dataset 
       && state.sigma
       && state.uncertaintyFormat
       && state.bestAgeCutOff
@@ -90,7 +91,7 @@ export default function InputPanel({ state, setState }) {
       return false
   }
   function reloadData() {
-    setState({ ...state, dataLoaded: false })
+    setState({ ...state, dataLoaded: false, dataSummary: [] })
   }
   async function loadData() {
     const url = state.urlBase + 'validate'
@@ -103,7 +104,11 @@ export default function InputPanel({ state, setState }) {
     }) 
     const json = await res.json()
     console.log(json)
-    setState({ ...state, dataLoaded: true })
+    let dataSummary = _.zip(
+      Object.values(json.Sample_ID), 
+      Object.values(json.Sample_Size)
+    ) 
+    setState({ ...state, dataLoaded: true, dataSummary: dataSummary })
   }
   function handleChange(selectedOption) {
     const columnLabels = selectedOption.value === 'Best Age and sx' 

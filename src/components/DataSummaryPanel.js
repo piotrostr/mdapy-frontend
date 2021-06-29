@@ -54,20 +54,21 @@ export default function DataSummaryPanel({ state, setState }) {
       </Row>
       <Scroll>
         {
-          data.map(([id, size], key) => 
-            <Row key={key}>
-              <Entry>
-                <LightBoldText>
-                  {id}
-                </LightBoldText>
-              </Entry>
-              <Entry>
-                <LightText>
-                  {size}
-                </LightText>
-              </Entry>
-            </Row>
-          )
+          state.dataSummary.length &&
+            state.dataSummary.map(([id, size], key) => 
+              <Row key={key}>
+                <Entry>
+                  <LightBoldText>
+                    {id}
+                  </LightBoldText>
+                </Entry>
+                <Entry>
+                  <LightText>
+                    {size}
+                  </LightText>
+                </Entry>
+              </Row>
+            )
         }
       </Scroll>
     </SmallCard>
