@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import GraphCard from './GraphCard'
-import SmallPanelsSection, { Row } from './SmallPanelsSection'
+import SmallPanelsSection from './SmallPanelsSection'
 import PlottingMethodsSection from './PlottingMethodsSection'
 import GenerateGraphPlaceholder from './GenerateGraphPlaceholder'
 
