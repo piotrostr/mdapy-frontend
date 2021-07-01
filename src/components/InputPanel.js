@@ -67,7 +67,6 @@ export default function InputPanel({ state, setState }) {
       body: JSON.stringify(state)
     }) 
     const json = await res.json()
-    console.log(json)
     let dataSummary = _.zip(
       Object.values(json.Sample_ID), 
       Object.values(json.Sample_Size)
