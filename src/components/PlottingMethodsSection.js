@@ -16,12 +16,12 @@ export default function PlottingMethodsSections({ state, setState }) {
       body: JSON.stringify(state)
     }) 
     const json = await res.json()
-    console.log(json)
     if (json.length == 2)
       setState({ 
         ...state, 
         graphReady: true,
-        svg: json[1]
+        svg: json[1],
+        tableData: JSON.parse(json[0])
       })
   }
   
