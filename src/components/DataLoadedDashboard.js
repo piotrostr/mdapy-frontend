@@ -3,6 +3,7 @@ import GraphCard from './GraphCard'
 import SmallPanelsSection from './SmallPanelsSection'
 import PlottingMethodsSection from './PlottingMethodsSection'
 import GenerateGraphPlaceholder from './GenerateGraphPlaceholder'
+import GeneratingGraph from './GeneratingGraph'
 
 
 export default function DataLoadedDashboard({ state, setState }) {
@@ -12,8 +13,12 @@ export default function DataLoadedDashboard({ state, setState }) {
       <PlottingMethodsSection state={state} setState={setState} />
       {
         state.graphReady 
-          ? <GraphCard />
-          : <GenerateGraphPlaceholder />
+          ? <GraphCard svg={state.svg} />
+          : (
+            state.loading
+              ? <GeneratingGraph />
+              : <GenerateGraphPlaceholder />
+          )
       }
     </div>
   )

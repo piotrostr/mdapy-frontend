@@ -20,6 +20,10 @@ const Button = styled.div`
   padding: 9.5px 21px 9.5px;
   align-items: center;
   user-select: none;
+  &:hover {
+    border: 2px solid #1493A4;
+    padding: 8.5px 20px 8.5px;
+  }
 `
 
 export default function PlottingMethodButton({ text, onClick }) {

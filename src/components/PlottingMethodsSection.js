@@ -6,6 +6,7 @@ import { Row } from './styled'
 export default function PlottingMethodsSections({ state, setState }) {
 
   async function fetchAllMethods() {
+    setState({ ...state, loading: true })
     const url = state.urlBase + 'calculate_all_mda_methods'
     const res = await fetch(url, {
       method: 'POST',
@@ -16,6 +17,12 @@ export default function PlottingMethodsSections({ state, setState }) {
     }) 
     const json = await res.json()
     console.log(json)
+    if (json.length == 2)
+      setState({ 
+        ...state, 
+        graphReady: true,
+        svg: json[1]
+      })
   }
   
   return (
