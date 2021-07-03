@@ -40,6 +40,7 @@ export default function Main() {
     graphReady: false,
     samplesToPlot: 'Sample 1',
     agePlottingDims: '04',
+    method: 'all-methods'
   })
   return (
     <ThemeProvider theme={theme}>

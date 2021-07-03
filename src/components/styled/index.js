@@ -132,5 +132,6 @@ export const TableCard = styled.div`
   height: 275px;
   background: #ffffff;
   margin-bottom: 25px;
+  padding-top: 28px;
 `
 
