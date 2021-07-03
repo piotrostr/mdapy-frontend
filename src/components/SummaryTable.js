@@ -1,14 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import BoldText from './Text/BoldText'
+import MediumText from './Text/MediumText'
 import LightText from './Text/LightText'
-
-const TableCard = styled.div`
-  width: 930px;
-  height: 275px;
-  background: #ffffff;
-  margin-bottom: 25px;
-`
 
 const Table = styled.div`
   width: 100%;
@@ -26,12 +19,13 @@ const Row = styled.div`
 `
 
 const Header = styled(Row)`
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   border-bottom: 1px solid #DEE5EF;
+  height: 40px;
 `
 
 const Entry = styled.div`
-  width: 145px;
+  width: 135px;
   display: flex;
   justify-content: flex-start;
   margin-left: 25px;
@@ -56,40 +50,47 @@ function convertData(tableData) {
 export default function SummaryTable({ tableData }) {
   const data = convertData(tableData)
   console.log(data)
-  // TODO add keys so react dont complain
   return (
-    <TableCard>
-      <Table>
-        <Header>
-          {
-            data.header.map((val, key) => 
-              <BoldText>
-                <HeaderEntry key={key}>
-                  {val}
-                </HeaderEntry>
-              </BoldText>
-            )
-          }
-        </Header>
+    <Table>
+      <Header>
         {
-          Object.values(data.body).map(
-            (row, key) => 
-              <Row key={key}>
-                {
-                  row.map(
-                    (value, key) => 
-                      <LightText>
-                        <Entry key={key}>
-                          {value}
-                        </Entry>
-                      </LightText>
-                  )
-                }
-              </Row>
+          data.header.map((val, key) => 
+            <MediumText>
+              <HeaderEntry key={key}>
+                {val.replaceAll(
+                  "$" + String.fromCharCode(92)+ "sigma$",
+                  'σ'
+                )}
+              </HeaderEntry>
+            </MediumText>
           )
         }
-      </Table>
-    </TableCard>
+      </Header>
+      {
+        Object.values(data.body).map(
+          (row, key) => 
+            <Row 
+              key={key} 
+              style={
+                !(key % 2 == 0)
+                  ? { background: '#F8F8F9' } 
+                  : {}
+              }
+            >
+              {
+                row.map(
+                  (value, key) => 
+                    <LightText>
+                      <Entry key={key}>
+                        {value}
+                      </Entry>
+                    </LightText>
+                )
+              }
+            </Row>
+        )
+      }
+    </Table>
   )
 }
 

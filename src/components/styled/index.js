@@ -126,3 +126,11 @@ export const SmallInput = styled(Input)`
   width: 78px;
   height: 40px;
 `
+
+export const TableCard = styled.div`
+  width: 930px;
+  height: 275px;
+  background: #ffffff;
+  margin-bottom: 25px;
+`
+

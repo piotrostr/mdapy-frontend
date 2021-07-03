@@ -16,13 +16,37 @@ export default function PlottingMethodsSections({ state, setState }) {
       body: JSON.stringify(state)
     }) 
     const json = await res.json()
-    if (json.length == 2)
+    if (json.length == 2) {
       setState({ 
         ...state, 
+        method: 'all-methods',
         graphReady: true,
         svg: json[1],
         tableData: JSON.parse(json[0])
       })
+    }
+  }
+
+  async function fetchIndividualMethods() {
+    setState({ ...state, loading: true })
+    const url = state.urlBase + 'calculate_individual_mda_methods'
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application-json'
+      },
+      body: JSON.stringify(state)
+    }) 
+    const json = await res.json()
+    if (json.length == 2) {
+      setState({ 
+        ...state, 
+        method: 'all-methods',
+        graphReady: true,
+        svg: json[1],
+        tableData: JSON.parse(json[0])
+      })
+    }
   }
   
   return (
