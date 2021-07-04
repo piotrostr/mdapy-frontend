@@ -35,7 +35,7 @@ export default function PlottingMethodsSections({ state, setState }) {
     }
   }
 
-  async function fetchIndividualMethods() {
+  async function fetchIndividualMethod(method) {
     setState({
       ...state,
       loading: true,
@@ -43,7 +43,7 @@ export default function PlottingMethodsSections({ state, setState }) {
       svg: null,
       tableData: null 
     })
-    const url = state.urlBase + 'calculate_individual_mda_methods'
+    const url = state.urlBase + 'calculate_individual_' + method
     const res = await fetch(url, {
       method: 'POST',
       headers: {
@@ -52,6 +52,7 @@ export default function PlottingMethodsSections({ state, setState }) {
       body: JSON.stringify(state)
     }) 
     const json = await res.json()
+    console.log(json)
     if (json.length == 2) {
       setState({ 
         ...state, 
@@ -78,7 +79,7 @@ export default function PlottingMethodsSections({ state, setState }) {
         />
         <PlottingMethodButton 
           text={'Calculate Individual MDAs and Plot'} 
-          onClick={() => null}
+          onClick={() => fetchIndividualMethod('YC1s')}
         />
         <PlottingMethodButton 
           text={'Plot All Samples With One MDA Method'} 
