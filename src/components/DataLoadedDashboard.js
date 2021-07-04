@@ -41,7 +41,10 @@ function TableAndGraph({ state }) {
               </Container>
               <SummaryTable tableData={state.tableData} />
             </TableCard>
-            <GraphCard svg={state.svg} />
+            <GraphCard 
+              svg={state.svg} 
+              title={'MDA Method Comparison Plots'}
+            />
           </div>
       }
       {

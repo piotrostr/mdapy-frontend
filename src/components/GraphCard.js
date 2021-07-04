@@ -1,5 +1,6 @@
 import React from 'react'
 import { LargeCard } from './styled'
+import BoldText from './Text/BoldText'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -15,10 +16,22 @@ const Container = styled.div`
   }
 `
 
-export default function GraphCardPlaceholder({ svg }) {
+const TitleText = styled(BoldText)`
+  top: 18px;
+  left: 13px;
+  position: relative;
+  margin-bottom: 20px;
+  align-self: flex-start;
+  margin-left: 8px;
+`
+
+export default function GraphCardPlaceholder({ svg, title }) {
   const image = JSON.parse(svg)
   return (
     <LargeCard>
+      <TitleText>
+        {title}
+      </TitleText>
       <Container dangerouslySetInnerHTML={{__html: image}} />
     </LargeCard>
   )

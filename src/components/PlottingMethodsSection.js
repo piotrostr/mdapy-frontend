@@ -6,7 +6,13 @@ import { Row } from './styled'
 export default function PlottingMethodsSections({ state, setState }) {
 
   async function fetchAllMethods() {
-    setState({ ...state, loading: true })
+    setState({ 
+      ...state, 
+      loading: true,
+      graphReady: false,
+      svg: null,
+      tableData: null 
+    })
     const url = state.urlBase + 'calculate_all_mda_methods'
     const res = await fetch(url, {
       method: 'POST',
@@ -20,15 +26,23 @@ export default function PlottingMethodsSections({ state, setState }) {
       setState({ 
         ...state, 
         method: 'all-methods',
+        loading: false,
         graphReady: true,
         svg: json[1],
         tableData: JSON.parse(json[0])
       })
+      console.log(json[1])
     }
   }
 
   async function fetchIndividualMethods() {
-    setState({ ...state, loading: true })
+    setState({
+      ...state,
+      loading: true,
+      graphReady: false,
+      svg: null,
+      tableData: null 
+    })
     const url = state.urlBase + 'calculate_individual_mda_methods'
     const res = await fetch(url, {
       method: 'POST',
@@ -44,6 +58,7 @@ export default function PlottingMethodsSections({ state, setState }) {
         method: 'all-methods',
         graphReady: true,
         svg: json[1],
+        loading: false,
         tableData: JSON.parse(json[0])
       })
     }
