@@ -23,10 +23,12 @@ export const options = [
     value: 'YSP',
     label: 'YSP'
   },
+  /*
   {
     value: 'MLA',
     label: 'MLA'
   },
+  */
   {
     value: 'YDZ',
     label: 'YDZ'
@@ -43,10 +45,12 @@ export const options = [
     value: 'YSG',
     label: 'YSG'
   },
+  /*
   {
     value: 'All',
     label: 'Plot All Methods At Once'
   },
+  */
 ]
 
 const modalStyle = {

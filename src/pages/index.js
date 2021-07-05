@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '@fontsource/inter'
 import '@fontsource/work-sans'
 import '@fontsource/ibm-plex-sans'
+import "@fontsource/work-sans/700.css"
+import '@fontsource/inter/600.css'
 import { ThemeProvider } from 'styled-components'
 import { 
   theme, 
