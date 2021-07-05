@@ -79,7 +79,7 @@ export default function PlottingMethodsSections({ state, setState }) {
       fetchIndividualMethod(state.individualMethod)
     }
     if (state.allSamplesMethod) {
-      // TODO
+      // fetchAllSamplesMethod(state.allSamplesMethod)
     }
   }, [
     state.individualMethod, 
@@ -143,6 +143,34 @@ export default function PlottingMethodsSections({ state, setState }) {
         svg: json[1],
         loading: false,
         tableData: JSON.parse(json[0])
+      })
+    }
+  }
+
+  async function fetchAllSamplesMethod(method) {
+    setState({
+      ...state,
+      loading: true,
+      graphReady: false,
+      svg: null,
+      tableData: null 
+    })
+    const url = state.urlBase + 'calculate_all_samples_' + method
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application-json'
+      },
+      body: JSON.stringify(state)
+    }) 
+    const json = await res.json()
+    console.log(json)
+    if (json.length == 2) {
+      setState({ 
+        ...state, 
+        graphReady: true,
+        svg: json,
+        loading: false,
       })
     }
   }
