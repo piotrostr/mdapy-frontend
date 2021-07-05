@@ -75,11 +75,19 @@ export default function PlottingMethodsSections({ state, setState }) {
       <Row>
         <PlottingMethodButton 
           text={'Calculate All MDA Methods and Plot'} 
-          onClick={fetchAllMethods}
+          onClick={
+            !state.loading 
+              ? fetchAllMethods
+              : () => null
+          }
         />
         <PlottingMethodButton 
           text={'Calculate Individual MDAs and Plot'} 
-          onClick={() => fetchIndividualMethod('YC1s')}
+          onClick={
+            !state.loading 
+              ? () => fetchIndividualMethod('YC1s')
+              : () => null
+          }
         />
         <PlottingMethodButton 
           text={'Plot All Samples With One MDA Method'} 

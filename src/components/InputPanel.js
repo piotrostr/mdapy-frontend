@@ -54,7 +54,10 @@ export default function InputPanel({ state, setState }) {
     setState(state => ({
       ...state, 
       dataLoaded: false,
-      dataSummary: [] 
+      dataSummary: [],
+      graphReady: false,
+      svg: null,
+      tableData: null 
     }))
   }
   async function loadData() {
@@ -154,6 +157,7 @@ export default function InputPanel({ state, setState }) {
             onChange={handleChange} 
             options={options} 
             placeholder=""
+            isDisabled={state.dataLoaded}
           />
         </LightText>
       </Row>
