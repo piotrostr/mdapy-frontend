@@ -79,7 +79,7 @@ export default function PlottingMethodsSections({ state, setState }) {
       fetchIndividualMethod(state.individualMethod)
     }
     if (state.allSamplesMethod) {
-      // fetchAllSamplesMethod(state.allSamplesMethod)
+      fetchAllSamplesMethod(state.allSamplesMethod)
     }
   }, [
     state.individualMethod, 
