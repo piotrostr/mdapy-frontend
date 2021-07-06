@@ -21,6 +21,7 @@ export const Row = styled.div`
   margin-bottom: 12px;
   width: 100%;
   justify-content: flex-start;
+  user-select: none;
 `
 
 export const ShortRow = styled.div`

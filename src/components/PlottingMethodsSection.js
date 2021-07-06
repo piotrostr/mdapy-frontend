@@ -233,7 +233,11 @@ export default function PlottingMethodsSections({ state, setState }) {
                   allSamplesMethod: null
                 }))
               }
-              style={{ display: 'flex', flexDirection: 'row' }}
+              style={{ 
+                display: 'flex',
+                userSelect: 'none',
+                flexDirection: 'row',
+              }}
             >
               <Circle>
                 { 
@@ -264,7 +268,11 @@ export default function PlottingMethodsSections({ state, setState }) {
                   individualMethod: null
                 }))
               }
-              style={{ display: 'flex', flexDirection: 'row' }}
+              style={{ 
+                display: 'flex',
+                userSelect: 'none',
+                flexDirection: 'row',
+              }}
             >
               <Circle>
                 { 
