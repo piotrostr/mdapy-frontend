@@ -19,7 +19,7 @@ import DataLoadedDashboard from '../components/DataLoadedDashboard'
 
 export default function Main() {
   const [state, setState] = useState({
-    urlBase: 'http://3.142.237.151/',
+    urlBase: 'https://spark-token.org/',
     dataset: null,
     sigma: null,
     uncertaintyFormat: null,
