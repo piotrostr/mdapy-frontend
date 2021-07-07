@@ -16,6 +16,13 @@ const Container = styled.div`
   }
 `
 
+const SingleContainer = styled(Container)`
+  svg {
+    width: auto;
+    height: auto;
+  }
+`
+
 const TitleText = styled(BoldText)`
   top: 18px;
   left: 13px;
@@ -25,14 +32,22 @@ const TitleText = styled(BoldText)`
   margin-left: 8px;
 `
 
-export default function GraphCardPlaceholder({ svg, title }) {
+export default function GraphCard({ svg, title, single }) {
   const image = JSON.parse(svg)
   return (
     <LargeCard>
       <TitleText>
         {title}
       </TitleText>
-      <Container dangerouslySetInnerHTML={{__html: image}} />
+      {
+        single 
+          ? <SingleContainer dangerouslySetInnerHTML={{
+              __html: image
+          }} />
+          : <Container dangerouslySetInnerHTML={{
+            __html: image
+          }} />
+      }
     </LargeCard>
   )
 }

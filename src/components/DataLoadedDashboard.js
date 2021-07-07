@@ -48,21 +48,15 @@ function TableAndGraph({ state }) {
           </div>
       }
       {
-        state.method === 'individual-methods' &&
+        state.individualMethod && 
           <div>
-            <TableCard>
-              <SummaryTable tableData={state.tableData} />
-            </TableCard>
             <GraphCard svg={state.svg} />
           </div>
       }
       {
-        state.method === 'all-samples-with-one-method' &&
+        state.allSamplesMethod && 
           <div>
-            <TableCard>
-              <SummaryTable tableData={state.tableData} />
-            </TableCard>
-            <GraphCard svg={state.svg} />
+            <GraphCard svg={state.svg} single={true} />
           </div>
       }
     </div>

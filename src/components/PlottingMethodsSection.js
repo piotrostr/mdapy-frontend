@@ -54,7 +54,10 @@ export const options = [
 ]
 
 const modalStyle = {
-  overlay: { width: '100%', height: '100%' },
+  overlay: {
+    width: '100%',
+    height: '100%' 
+  },
   content: { 
     display: 'flex',
     flexDirection: 'column', 
@@ -135,14 +138,14 @@ export default function PlottingMethodsSections({ state, setState }) {
       body: JSON.stringify(state)
     }) 
     const json = await res.json()
-    console.log(json)
     if (json.length == 2) {
       setState({ 
         ...state, 
         graphReady: true,
         svg: json[1],
         loading: false,
-        tableData: JSON.parse(json[0])
+        tableData: JSON.parse(json[0]),
+        method: null
       })
     }
   }
@@ -153,7 +156,7 @@ export default function PlottingMethodsSections({ state, setState }) {
       loading: true,
       graphReady: false,
       svg: null,
-      tableData: null 
+      tableData: null
     })
     const url = state.urlBase + 'calculate_all_samples_' + method
     const res = await fetch(url, {
@@ -164,15 +167,15 @@ export default function PlottingMethodsSections({ state, setState }) {
       body: JSON.stringify(state)
     }) 
     const json = await res.json()
-    console.log(json)
-    if (json.length == 2) {
+    if (json)
       setState({ 
         ...state, 
         graphReady: true,
-        svg: json,
+        svg: json[0],
         loading: false,
+        method: null,
+        allSamplesFetched: true
       })
-    }
   }
   
   return (
