@@ -7,6 +7,8 @@ export default function ResetButton({ setState }) {
   function onClick() {
     setState({
       dataset: null,
+      sigma: null,
+      uncertaintyFormat: null,
       bestAgeCutOff: null,
       primaryDecayConstant: null,
       secondaryDecayConstant: null,
@@ -16,7 +18,19 @@ export default function ResetButton({ setState }) {
       primaryCalibrationUncertainty: null,
       secondaryCalibrationUncertainty: null,
       primaryDecayUncertainty: null,
-      secondaryDecayUncertainty: null
+      secondaryDecayUncertainty: null,
+      table: { 
+        columnLabels: [],
+        data: []      
+      },
+      dataLoaded: false,
+      dataSummary: [],
+      graphReady: false,
+      samplesToPlot: 'Sample 1',
+      agePlottingDims: '04',
+      method: 'all-methods',
+      individualMethod: null,
+      allSamplesMethod: null
     })
   }
   return (
