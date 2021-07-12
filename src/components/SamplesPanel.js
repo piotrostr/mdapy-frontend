@@ -17,18 +17,80 @@ const Fill = styled(_Fill)`
 `
 
 function Option({ option, state, setState }) {
+  function selectSample() {
+    if (!state.samplesToPlot.includes(option))
+      setState({ 
+        ...state, 
+        samplesToPlot: [
+          ...state.samplesToPlot,
+          option 
+        ].filter((item) => { return item !== 'All Samples' })
+      }) 
+    else  
+      setState({ 
+        ...state, 
+        samplesToPlot: state.samplesToPlot.filter((item) => {
+          return item !== option 
+        })
+      })
+  }
+  function selectAllSamples() {
+    if (!state.samplesToPlot.includes(option))
+      setState({ 
+        ...state, 
+        samplesToPlot: [
+          option 
+        ]
+      }) 
+    else    
+      setState({ 
+        ...state, 
+        samplesToPlot: state.samplesToPlot.filter((item) => {
+          return item !== option 
+        })
+      })
+  }
   return (
     <Row
-      onClick={
-        state.samplesToPlot !== option
-          ? () => setState({ ...state, samplesToPlot: option }) 
-          : () => null 
-      }
+      onClick={selectSample}
     >
       <Entry>
         <Circle>
           { 
-            state.samplesToPlot === option && <Fill />
+            state.samplesToPlot.includes(option) && <Fill />
+          }
+        </Circle>
+        <LightText>
+          {option}
+        </LightText>
+      </Entry>
+    </Row>
+  )
+}
+
+function AllSamplesOption({ option, state, setState }) {
+  function selectAllSamples() {
+    if (!state.samplesToPlot.includes(option))
+      setState({ 
+        ...state, 
+        samplesToPlot: [option]
+      }) 
+    else    
+      setState({ 
+        ...state, 
+        samplesToPlot: state.samplesToPlot.filter((item) => {
+          return item !== option 
+        })
+      })
+  }
+  return (
+    <Row
+      onClick={selectAllSamples}
+    >
+      <Entry>
+        <Circle>
+          { 
+            state.samplesToPlot.includes(option) && <Fill />
           }
         </Circle>
         <LightText>
@@ -45,11 +107,24 @@ export default function SamplesPanel({ state, setState }) {
       <SmallCardHeader>
         Select Samples to Plot
       </SmallCardHeader>
-      <Option option={'Sample 1'} state={state} setState={setState} />
-      <Option option={'Sample 2'} state={state} setState={setState} />
-      <Option option={'Sample 3'} state={state} setState={setState} />
-      <Option option={'Sample 4'} state={state} setState={setState} />
-      <Option option={'All Samples'} state={state} setState={setState} />
+      {
+        state.dataSummary.length &&
+          state.dataSummary.map(([id, _], key) =>
+            <Option 
+              option={id} 
+              state={state}
+              setState={setState} 
+            />
+          )
+      }
+      {
+        state.dataSummary.length &&
+        <AllSamplesOption 
+          option={'All Samples'} 
+          state={state} 
+          setState={setState} 
+        />
+      }
     </SmallCard>
   )
 }

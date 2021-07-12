@@ -41,7 +41,7 @@ export default function Main() {
     dataLoaded: false,
     dataSummary: [],
     graphReady: false,
-    samplesToPlot: 'Sample 1',
+    samplesToPlot: [],
     agePlottingDims: '04',
     method: 'all-methods',
     individualMethod: null,
