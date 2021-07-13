@@ -62,12 +62,21 @@ export default function InputPanel({ state, setState }) {
   }
   async function loadData() {
     const url = state.urlBase + 'validate'
+    console.log(state)
     const res = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application-json'
       },
-      body: JSON.stringify(state)
+      body: JSON.stringify({ 
+        ...state,
+        table: { 
+          ...state.table,
+          data: state.table.data.filter((row) => {
+            return _.every(row)
+          })
+        }
+      })
     }) 
     const json = await res.json()
     let dataSummary = _.zip(
