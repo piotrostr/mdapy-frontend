@@ -33,6 +33,7 @@ const TitleText = styled(BoldText)`
 `
 
 export default function GraphCard({ svg, title, single }) {
+  // there have to be multiple svgs here ?
   const image = JSON.parse(svg)
   return (
     <LargeCard>
