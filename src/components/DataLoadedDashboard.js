@@ -10,6 +10,7 @@ import LightText from './Text/LightText'
 import { TableCard } from './styled'
 import styled from 'styled-components'
 import ExportButton from './Button/ExportButton'
+import Description from './Description'
 
 const Container = styled.div`
   width: 92%;
@@ -50,6 +51,13 @@ function TableAndGraph({ state }) {
       {
         state.individualMethod && 
           <div>
+            <Description method={state.individualMethod} />
+            <TableCard>
+              <Container>
+                <ExportButton onClick={() => null} />
+              </Container>
+              <SummaryTable tableData={state.tableData} />
+            </TableCard>
             <GraphCard svg={state.svg} />
           </div>
       }

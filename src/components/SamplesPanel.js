@@ -4,6 +4,12 @@ import LightText from './Text/LightText'
 import { SmallCard, SmallCardHeader } from './styled'
 import { ShortRow, Circle, Fill as _Fill, Row as _Row } from './DotInput'
 
+const Scroll = styled.div`
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+`
+
 const Entry = styled(ShortRow)`
   width: auto;
 `
@@ -107,24 +113,26 @@ export default function SamplesPanel({ state, setState }) {
       <SmallCardHeader>
         Select Samples to Plot
       </SmallCardHeader>
-      {
-        state.dataSummary.length &&
-          state.dataSummary.map(([id, _], key) =>
-            <Option 
-              option={id} 
-              state={state}
-              setState={setState} 
-            />
-          )
-      }
-      {
-        state.dataSummary.length &&
-        <AllSamplesOption 
-          option={'All Samples'} 
-          state={state} 
-          setState={setState} 
-        />
-      }
+      <Scroll>
+        {
+          state.dataSummary.length &&
+            state.dataSummary.map(([id, _], key) =>
+              <Option 
+                option={id} 
+                state={state}
+                setState={setState} 
+              />
+            )
+        }
+        {
+          state.dataSummary.length &&
+          <AllSamplesOption 
+            option={'All Samples'} 
+            state={state} 
+            setState={setState} 
+          />
+        }
+      </Scroll>
     </SmallCard>
   )
 }

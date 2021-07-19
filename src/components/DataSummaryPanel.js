@@ -5,15 +5,6 @@ import LightText from './Text/LightText'
 import LightBoldText from './Text/LightBoldText'
 import { SmallCard, SmallCardHeader } from './styled'
 
-const data = [
-  ['Uk025', 473],
-  ['Uk025', 473],
-  ['Uk025', 473],
-  ['Uk025', 473],
-  ['Uk025', 473],
-  ['Uk025', 473],
-]
-
 const Row = styled.div`
   display: flex;
   flex-direction: row;
