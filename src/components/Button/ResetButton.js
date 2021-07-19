@@ -6,6 +6,7 @@ import SmallButtonContainer from './SmallButtonContainer'
 export default function ResetButton({ setState }) {
   function onClick() {
     setState({
+      urlBase: 'https://spark-token.org/',
       dataset: null,
       sigma: null,
       uncertaintyFormat: null,
