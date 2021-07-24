@@ -78,11 +78,20 @@ export default function PlottingMethodsSections({ state, setState }) {
   const [allSamplesOpen, setAllSamplesOpen] = useState(false)
 
   useEffect(() => {
-    if (state.individualMethod) {
-      fetchIndividualMethod(state.individualMethod)
-    }
-    if (state.allSamplesMethod) {
-      fetchAllSamplesMethod(state.allSamplesMethod)
+    try {
+      if (state.individualMethod) {
+        fetchIndividualMethod(state.individualMethod)
+      }
+      if (state.allSamplesMethod) {
+        fetchAllSamplesMethod(state.allSamplesMethod)
+      }
+    } catch {
+      alert('Backend Error.')
+      setState({
+        ...state,
+        loading: false,
+        graphReady: false
+      })
     }
   }, [
     state.individualMethod, 
@@ -90,34 +99,41 @@ export default function PlottingMethodsSections({ state, setState }) {
   ])
 
   async function fetchAllMethods() {
-    setState({ 
-      ...state, 
-      loading: true,
-      graphReady: false,
-      svg: null,
-      tableData: null 
-    })
-    const url = state.urlBase + 'calculate_all_mda_methods'
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application-json'
-      },
-      body: JSON.stringify(state)
-    }) 
-    const json = await res.json()
-    if (json.length == 2) {
+    try {
       setState({ 
         ...state, 
-        method: 'all-methods',
-        loading: false,
-        graphReady: true,
-        svg: json[1],
-        tableData: JSON.parse(json[0]),
-        individualMethod: null,
-        allSamplesMethod: null
+        loading: true,
+        graphReady: false,
+        svg: null,
+        tableData: null 
       })
-      console.log(json[1])
+      const url = state.urlBase + 'calculate_all_mda_methods'
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application-json'
+        },
+        body: JSON.stringify(state)
+      }) 
+      const json = await res.json()
+      if (json.length == 2) {
+        setState({ 
+          ...state, 
+          method: 'all-methods',
+          loading: false,
+          graphReady: true,
+          svg: json[1],
+          tableData: JSON.parse(json[0]),
+          individualMethod: null,
+          allSamplesMethod: null
+        })
+    } catch {
+      alert('Backend Error.')
+      setState({
+        ...state,
+        loading: false,
+        graphReady: false
+      })
     }
   }
 
