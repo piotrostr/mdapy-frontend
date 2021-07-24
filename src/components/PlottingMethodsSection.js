@@ -78,20 +78,11 @@ export default function PlottingMethodsSections({ state, setState }) {
   const [allSamplesOpen, setAllSamplesOpen] = useState(false)
 
   useEffect(() => {
-    try {
-      if (state.individualMethod) {
-        fetchIndividualMethod(state.individualMethod)
-      }
-      if (state.allSamplesMethod) {
-        fetchAllSamplesMethod(state.allSamplesMethod)
-      }
-    } catch {
-      alert('Backend Error.')
-      setState({
-        ...state,
-        loading: false,
-        graphReady: false
-      })
+    if (state.individualMethod) {
+      fetchIndividualMethod(state.individualMethod)
+    }
+    if (state.allSamplesMethod) {
+      fetchAllSamplesMethod(state.allSamplesMethod)
     }
   }, [
     state.individualMethod, 
@@ -127,6 +118,7 @@ export default function PlottingMethodsSections({ state, setState }) {
           individualMethod: null,
           allSamplesMethod: null
         })
+      }
     } catch {
       alert('Backend Error.')
       setState({
@@ -138,60 +130,78 @@ export default function PlottingMethodsSections({ state, setState }) {
   }
 
   async function fetchIndividualMethod(method) {
-    setState({
-      ...state,
-      loading: true,
-      graphReady: false,
-      svg: null,
-      tableData: null 
-    })
-    const url = state.urlBase + 'calculate_individual_' + method
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application-json'
-      },
-      body: JSON.stringify(state)
-    }) 
-    const json = await res.json()
-    if (json.length == 2) {
-      setState({ 
-        ...state, 
-        graphReady: true,
-        svg: json[1],
+    try {
+      setState({
+        ...state,
+        loading: true,
+        graphReady: false,
+        svg: null,
+        tableData: null 
+      })
+      const url = state.urlBase + 'calculate_individual_' + method
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application-json'
+        },
+        body: JSON.stringify(state)
+      }) 
+      const json = await res.json()
+      if (json) {
+        setState({ 
+          ...state, 
+          graphReady: true,
+          svg: json[1],
+          loading: false,
+          tableData: JSON.parse(json[0]),
+          method: null
+        })
+      }
+    } catch {
+      alert('Backend Error.')
+      setState({
+        ...state,
         loading: false,
-        tableData: JSON.parse(json[0]),
-        method: null
+        graphReady: false
       })
     }
   }
 
   async function fetchAllSamplesMethod(method) {
-    setState({
-      ...state,
-      loading: true,
-      graphReady: false,
-      svg: null,
-      tableData: null
-    })
-    const url = state.urlBase + 'calculate_all_samples_' + method
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application-json'
-      },
-      body: JSON.stringify(state)
-    }) 
-    const json = await res.json()
-    if (json)
-      setState({ 
-        ...state, 
-        graphReady: true,
-        svg: json[0],
-        loading: false,
-        method: null,
-        allSamplesFetched: true
+    try {
+      setState({
+        ...state,
+        loading: true,
+        graphReady: false,
+        svg: null,
+        tableData: null
       })
+      const url = state.urlBase + 'calculate_all_samples_' + method
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application-json'
+        },
+        body: JSON.stringify(state)
+      }) 
+      const json = await res.json()
+      if (json)
+        setState({ 
+          ...state, 
+          graphReady: true,
+          svg: json[0],
+          loading: false,
+          method: null,
+          allSamplesFetched: true
+        })
+    } catch {
+      alert('Backend Error.')
+      setState({
+        ...state,
+        loading: false,
+        graphReady: false
+      })
+    }
   }
   
   return (
@@ -240,6 +250,7 @@ export default function PlottingMethodsSections({ state, setState }) {
         style={modalStyle}
         shouldCloseOnOverlayClick={true}
         onRequestClose={() => setIndividualOpen(false)}
+        ariaHideApp={false}
       >
         {
           options.map((option, key) =>

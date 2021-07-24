@@ -61,33 +61,37 @@ export default function InputPanel({ state, setState }) {
     }))
   }
   async function loadData() {
-    const url = state.urlBase + 'validate'
-    console.log(state)
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application-json'
-      },
-      body: JSON.stringify({ 
-        ...state,
-        table: { 
-          ...state.table,
-          data: state.table.data.filter((row) => {
-            return _.every(row)
-          })
-        }
-      })
-    }) 
-    const json = await res.json()
-    let dataSummary = _.zip(
-      Object.values(json.Sample_ID), 
-      Object.values(json.Sample_Size)
-    ) 
-    setState(state => ({
-      ...state, 
-      dataLoaded: true,
-      dataSummary: dataSummary 
-    }))
+    try {
+      const url = state.urlBase + 'validate'
+      console.log(state)
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application-json'
+        },
+        body: JSON.stringify({ 
+          ...state,
+          table: { 
+            ...state.table,
+            data: state.table.data.filter((row) => {
+              return _.every(row)
+            })
+          }
+        })
+      }) 
+      const json = await res.json()
+      let dataSummary = _.zip(
+        Object.values(json.Sample_ID), 
+        Object.values(json.Sample_Size)
+      ) 
+      setState(state => ({
+        ...state, 
+        dataLoaded: true,
+        dataSummary: dataSummary 
+      }))
+    } catch {
+      alert('Backend Error.')
+    }
   }
   function handleChange(selectedOption) {
     const columnLabels = selectedOption.value === 'Best Age and sx' 
