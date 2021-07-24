@@ -27,7 +27,7 @@ export default function ResetButton({ setState }) {
       dataLoaded: false,
       dataSummary: [],
       graphReady: false,
-      samplesToPlot: 'Sample 1',
+      samplesToPlot: ['All Samples'],
       agePlottingDims: '04',
       method: 'all-methods',
       individualMethod: null,
