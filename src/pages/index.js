@@ -20,7 +20,6 @@ import DataLoadedDashboard from '../components/DataLoadedDashboard'
 export default function Main() {
   const [state, setState] = useState({
     urlBase: 'https://spark-token.org/',
-    // urlBase: 'http://localhost:5000/',
     dataset: null,
     sigma: null,
     uncertaintyFormat: null,
@@ -41,7 +40,7 @@ export default function Main() {
     dataLoaded: false,
     dataSummary: [],
     graphReady: false,
-    samplesToPlot: [],
+    samplesToPlot: ['All Samples'],
     agePlottingDims: '04',
     method: 'all-methods',
     individualMethod: null,
